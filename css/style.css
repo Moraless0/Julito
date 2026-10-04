@@ -1,0 +1,325 @@
+* {
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* Animaciones CSS */
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+@keyframes drift {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+
+
+@keyframes achievement-pop {
+    0% {
+        transform: translateX(120%) scale(0.8);
+        opacity: 0;
+    }
+
+    10% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+
+    90% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(120%) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes achievement-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(234, 179, 8, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(234, 179, 8, 0.8), 0 0 30px rgba(234, 179, 8, 0.4);
+    }
+}
+
+@keyframes final-message {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.blink {
+    animation: blink 1s step-end infinite;
+}
+
+/* Intro screen */
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.intro-screen.hidden {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.intro-screen.fade-out {
+    animation: fadeOut 2s ease-in-out forwards;
+}
+
+.typewriter-text {
+    font-size: 2rem;
+    color: #eab308;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.cursor {
+    display: inline-block;
+    width: 12px;
+    height: 32px;
+    background: #eab308;
+    margin-left: 4px;
+    animation: blink 0.7s step-end infinite;
+}
+
+.float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.float-diagonal {
+    animation: float-diagonal 5s ease-in-out infinite;
+}
+
+.float-circle {
+    animation: float-circle 6s linear infinite;
+}
+
+.smoke-particle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #4ade80;
+    animation: smoke-rise 4s ease-out infinite;
+    image-rendering: pixelated;
+}
+
+/* Background drifting elements */
+.drift-element {
+    position: fixed;
+    opacity: 0.12;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.drift-left {
+    animation: drift 20s linear infinite;
+}
+
+.drift-right {
+    animation: drift-reverse 25s linear infinite;
+}
+
+/* Floating decorative elements */
+.floating-element {
+    position: fixed;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Achievement */
+.achievement-popup {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border: 4px solid #eab308;
+    border-radius: 8px;
+    padding: 16px;
+    min-width: 280px;
+    max-width: 320px;
+    z-index: 1000;
+    animation: achievement-pop 5s ease-in-out forwards, achievement-glow 2s ease-in-out infinite;
+    image-rendering: pixelated;
+}
+
+.achievement-popup.hidden {
+    display: none;
+}
+
+.achievement-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.achievement-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.achievement-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Pixelated images */
+.pixel-art {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Final message */
+.final-message {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.final-message.visible {
+    opacity: 1;
+    animation: final-message 0.8s ease-out;
+}
+
+/* Small static street scene */
+.street-scene-mini {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 120px;
+    background: linear-gradient(to bottom, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    border: 3px solid #4a4a4a;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 40;
+}
+
+.street-line-mini {
+    position: absolute;
+    bottom: 25%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: repeating-linear-gradient(90deg,
+            #fbbf24 0px,
+            #fbbf24 20px,
+            transparent 20px,
+            transparent 40px);
+}
+
+.sidewalk-mini {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+    border-top: 2px solid #4a4a4a;
+}
+
+.parked-car-mini {
+    position: absolute;
+    bottom: 25%;
+    object-contain: pixel-art;
+}
+
+/* Background drifting elements */
+.drift-element {
+    position: fixed;
+    opacity: 0.12;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.drift-left {
+    animation: drift 20s linear infinite;
+}
+
+/* Floating decorative elements */
+.floating-element {
+    position: fixed;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .floating-element {
+        opacity: 0.3;
+    }
+}

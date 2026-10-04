@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JULITO - Level 21 Unlocked</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-black min-h-screen">
+    <!-- Background drifting cars -->
+    <img src="assets/cars/bmw.png" alt="" class="drift-element drift-left w-32 h-20 object-contain pixel-art" style="top: 20%; animation-delay: 0s;">
+    <img src="assets/cars/honda.png" alt="" class="drift-element drift-left w-40 h-24 object-contain pixel-art" style="top: 60%; animation-delay: 10s;">
+
+    <!-- Floating decorative elements - Penny Boards -->
+    <img src="assets/skate/penny-board.png" alt="" class="floating-element w-20 h-14 object-contain pixel-art float" style="top: 30%; right: 8%;">
+    <img src="assets/skate/penny-board-alt.png" alt="" class="floating-element w-16 h-12 object-contain pixel-art float" style="top: 70%; left: 5%; animation-delay: 1.5s;">
+
+    <!-- Floating decorative elements - Joints -->
+    <img src="assets/chill/joint-1.png" alt="" class="floating-element w-14 h-28 object-contain pixel-art float" style="top: 45%; right: 5%; animation-delay: 0.5s;">
+    <img src="assets/chill/joint-2.png" alt="" class="floating-element w-12 h-24 object-contain pixel-art float" style="top: 80%; left: 10%; animation-delay: 2s;">
+
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="intro-screen">
+        <div class="typewriter-text">
+            <span id="typewriter"></span><span class="cursor"></span>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Achievement Popup -->
+    <div id="achievement-popup" class="achievement-popup hidden">
+        <button class="achievement-close" onclick="closeAchievement()">✕</button>
+        <div class="flex items-start">
+            <div class="achievement-icon mr-4">
+                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            <div class="flex-1">
+                <p class="text-yellow-400 text-[10px] mb-1">ACHIEVEMENT UNLOCKED</p>
+                <p class="text-white text-sm font-bold mb-1">LEVEL 21</p>
+                <p class="text-green-400 text-[8px]">+1000 XP</p>
+            </div>
+        </div>
+        <div class="mt-3 flex justify-center">
+            <img id="achievement-julito" src="assets/julito/julito.jpg" alt="Julito" class="w-20 h-20 object-cover pixel-art rounded-lg" onerror="this.style.display='none'">
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-4xl mx-auto px-4 pb-32">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex flex-col items-center justify-center py-20">
+            <img 
+                src="assets/julito/julito.jpg" 
+                alt="Julito" 
+                class="w-48 h-48 md:w-72 md:h-72 object-cover pixel-art mb-8 rounded-full border-4 border-yellow-500 float"
+                onerror="this.style.display='none'"
+            >
+            <h1 class="text-2xl md:text-5xl text-white text-center mb-6 leading-relaxed">
+                JULITO
+            </h1>
+            <p class="text-yellow-400 text-sm md:text-2xl text-center mb-12">
+                LEVEL 21 UNLOCKED
+            </p>
+            <p class="text-green-400 text-xs md:text-sm text-center blink">
+                SCROLL DOWN ⬇️
+            </p>
+        </section>
+
+        <!-- Final Birthday Message -->
+        <section id="final" class="py-20 px-4 min-h-[60vh] flex items-center justify-center">
+            <div id="final-message" class="final-message bg-gradient-to-b from-green-900/50 to-black border-4 border-green-500 p-8 md:p-16 rounded-lg max-w-2xl">
+                <h2 class="text-2xl md:text-5xl text-green-400 text-center mb-8"> FELIZ CUMPLEAÑOS </h2>
+                <p class="text-white text-sm md:text-xl text-center leading-relaxed mb-6">
+                    ¡Felices 21, Julito!
+                </p>
+                <p class="text-gray-300 text-xs md:text-base text-center leading-relaxed mb-8">
+                    Felicidades, primo 🎉 Que Dios te bendiga con muchos años más de vida, mucha salud y felicidad. Espero que cumplas todas tus metas y que disfrutes mucho tu día. Te amo un montón loco 😂❤️
+                </p>
+                <p class="text-gray-400 text-xs md:text-sm text-center leading-relaxed mb-8">
+                    
+                </p>
+                <div class="text-center">
+                    <p class="text-yellow-400 text-xs md:text-lg blink">🎮 LEVEL 21 COMPLETE 🎮</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Typewriter intro effect
+        const introScreen = document.getElementById('intro-screen');
+        const typewriter = document.getElementById('typewriter');
+        const text = "LEVEL 21 UNLOCKED";
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < text.length) {
+                typewriter.textContent += text.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 150);
+            } else {
+                // After typing is complete, wait 2.5 seconds then fade out
+                setTimeout(() => {
+                    introScreen.classList.add('fade-out');
+                    // Start music when fade out begins
+                    const audio = document.getElementById('audio-birthday');
+
+                    
+                    // Remove from DOM after animation (2s)
+                    setTimeout(() => {
+                        introScreen.style.display = 'none';
+                    }, 2000);
+                }, 2500);
+            }
+        }
+
+        // Start typewriter effect on page load
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+        });
+
+        // Achievement popup
+        const achievementPopup = document.getElementById('achievement-popup');
+        
+        function showAchievement() {
+            achievementPopup.classList.remove('hidden');
+            setTimeout(() => {
+                closeAchievement();
+            }, 4000);
+        }
+        
+        function closeAchievement() {
+            achievementPopup.classList.add('hidden');
+        }
+        
+        window.addEventListener('load', () => {
+            setTimeout(showAchievement, 1000);
+        });
+
+        // Final message on scroll
+        const finalMessage = document.getElementById('final-message');
+        
+        function checkFinalMessage() {
+            const rect = finalMessage.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (isVisible) {
+                finalMessage.classList.add('visible');
+            }
+        }
+        
+        window.addEventListener('scroll', checkFinalMessage);
+        window.addEventListener('load', checkFinalMessage);
+    </script>
+</body>
+</html>
